@@ -25,6 +25,7 @@
 
 
 게임을 시작할 때마다 맵을 랜덤으로 다시 새롭게 만들기 때문에, 한 번 게임을 다시 실행하면 기존의 맵을 잃어버리게 된다. 맵 데이터를 생성한 후 txt파일로 저장하는 기능을 추가하였다.
+![image](https://github.com/user-attachments/assets/ec25262d-58f6-4214-965d-3240afc806f4)
 
 
 원래는 희소행렬의 데이터를 저장할 때 모든 행렬을 다 저장하는 방식이 아닌 0이 아닌 값을 인덱스만 (이런식으로 <행번호, 열번호, 값>)으로 추출하여 txt파일로 저장하고 다시 그 파일을 읽어와서 데이터를 사용하려 하였다. 그러나 막상 저장하고 읽는건 문제가 안 됐으나 그 데이터를 이용하려고 하니 머리가 아파져서… 포기하고 맵을 배열에 맵사이즈만큼 값을 저장하는 방식으로 채택하였다.
@@ -128,8 +129,8 @@
     
 
 ### Class의 관계
+![image](https://github.com/user-attachments/assets/4d175ab0-a824-46de-ab05-dde7caec9ab2)
 
-![2월프로젝트.drawio.png](attachment:49147db6-9540-4016-bc84-b167b2b1925f:2월프로젝트.drawio.png)
 
 **1월 프로젝트에는** 맵과 카메라의 기능들을 모두 gamelevel에 두어서 관리가 어렵다고 느껴졌었고 추가된 기능이 있어서 **2월 프로젝트에는** Map클래스와 Camera클래스를 따로 구성하였다.
 
@@ -480,18 +481,17 @@ if (gameLevel->map->maze[targetWorldPos.x][targetWorldPos.y] == '#')
     
 
 ### Astar 의 관계
+![image](https://github.com/user-attachments/assets/6d3bbaef-8c7d-42d1-82da-3c5cf6e46c4b)
+![image](https://github.com/user-attachments/assets/f21c0a88-1f07-4ba0-abae-d806184b5a85)
 
-![image.png](attachment:f614fd9e-a760-47c6-8fec-e8635277f871:image.png)
-
-![image.png](attachment:092f9468-854d-44bf-9139-a77424c509ba:image.png)
 
 Player클래스가 Astar알고리즘을 가지고 있고 Astar알고리즘이 생성한 경로는 GameLevel클래스에 데이터멤버의 std::vector<Node*> AstarPath; 벡터에 저장하게 하였다.
 
 GameLevel 클래스에 Path를 저장한 이유는 이 경로를 화면에 띄우기 위해서는 경로 또한 Actor로 만들어줘야했기 때문에  Actor를 생성하고 해제하기 위해서는 이 방식이 좀 더 편할 것 같아서 선택하였는데, 지금 생각하니 Player클래스에 넣어줘도 될것 같다.
 
 ## Astar 애니메이션 구현
+![image](https://github.com/user-attachments/assets/9e4b03fc-e188-41f0-8d3d-e215c1f0025c)
 
-![화면 녹화 중 2025-02-27 123015.gif](attachment:13e11794-be87-427f-adff-72dc1f5e8525:화면_녹화_중_2025-02-27_123015.gif)
 
 스페이스 버튼을 누르면 Player가 end위치까지 따라가도록 구현하였다.
 
