@@ -9,8 +9,8 @@
 - **Space 클릭 :** A*알고리즘을 이용한 경로 애니메이션 **←3일차**
 
 ### 미로 맵 생성
+![image](https://github.com/user-attachments/assets/e5037b79-7c60-449c-8ef0-01139d8bb2f1)
 
-![360X360크기의 맵](attachment:934b0108-4e64-468e-a3df-690c42b7f816:image.png)
 
 360X360크기의 맵
 
@@ -21,12 +21,11 @@
 처음에는 재귀호출 방식으로 구현하였으나, 맵의 사이즈가 90* 90 정도가 넘어가면 스택이 깊어져서 스택오버플로우가 발생하였다. 따라서 재귀호출 부분을 반복문으로 바꿔주었더니 맵 크기를 더 크게 확장시킬 수 있었다.
 
 ### Map의 데이터를 txt파일로 생성
+![image](https://github.com/user-attachments/assets/1bc87977-4e85-4f3c-961a-a3fc0a99ec6e)
 
-![image.png](attachment:5e00aab5-34f9-4c34-b1ce-0daeea9ca007:image.png)
 
 게임을 시작할 때마다 맵을 랜덤으로 다시 새롭게 만들기 때문에, 한 번 게임을 다시 실행하면 기존의 맵을 잃어버리게 된다. 맵 데이터를 생성한 후 txt파일로 저장하는 기능을 추가하였다.
 
-![image.png](attachment:317a394f-15f8-4c42-87a9-db9f950553e3:image.png)
 
 원래는 희소행렬의 데이터를 저장할 때 모든 행렬을 다 저장하는 방식이 아닌 0이 아닌 값을 인덱스만 (이런식으로 <행번호, 열번호, 값>)으로 추출하여 txt파일로 저장하고 다시 그 파일을 읽어와서 데이터를 사용하려 하였다. 그러나 막상 저장하고 읽는건 문제가 안 됐으나 그 데이터를 이용하려고 하니 머리가 아파져서… 포기하고 맵을 배열에 맵사이즈만큼 값을 저장하는 방식으로 채택하였다.
 
@@ -136,7 +135,6 @@
 
 ### Map 사이즈를 확장 및 카메라 구현방법 변경을 하려 하였으나..
 
-[화면 녹화 중 2025-02-27 121207.mp4](attachment:378e808b-3d18-4851-9e9b-89d4907b2d25:화면_녹화_중_2025-02-27_121207.mp4)
 
 방향키를 눌렀을 시 카메라는 고정되어있는 상태에서 Level에 있는 actor들 이동하는 방식으로 구현하고 싶었으나 이미 카메라는 고정이 아니라 이동을 해야 한다는 관념이 박혀있어 생각의 틀을 깨고 방법을 고안해내는 것이 어려웠다. 이걸 고민하고 구현까지 완료하기엔 프로젝트 기간이 끝나있을 거 같아서 기존의 방식을 유지하였다.
 
@@ -151,8 +149,8 @@
 기존 엔진에서는 스크린 사이즈를 정해놓고 스크린 사이즈만큼 맵을 제작해 맵을 띄운다.
 
 **기본 아이디어**
+![image](https://github.com/user-attachments/assets/c42ef63c-75dc-4eb1-a287-7558522d2cce)
 
-![image.png](attachment:919562a5-96d1-49df-a49b-cd384ea4b495:image.png)
 
 엔진에 월드 좌표계를 하나 추가하여 액터가 그 좌표 공간을 돌아다니게 하고 스크린 범위에 들어오는 액터들만 화면에 보이게 하면 맵도 만들어지고 카메라도 만들어지지 않을까 생각하였다.
 
@@ -374,8 +372,8 @@
 따라서 DrawableActor를 상속받는 Wall클래스를 생성하였다.
 
 그리고 GameLevel클래스의 생성자에 맵 데이터를 생성 하는 함수를 호출함 뒤 다 생성되면 맵데이터를 모두 순회하여 모든 장애물들을 Wall클래스 타입의 액터로 만들어주었다.
+![image](https://github.com/user-attachments/assets/c48d29cf-3560-44ca-902b-79e768627f17)
 
-![image.png](attachment:36e74e19-2f59-413b-85fc-79fa9df67f5d:image.png)
 
 ```cpp
 void GameLevel::AddMapActor()
@@ -395,8 +393,7 @@ void GameLevel::AddMapActor()
 ```
 
 # 우측 클릭 좌측 클릭
-
-![녹음 2025-02-27 122332.gif](attachment:8feac565-6e2a-4bab-b07f-e2f4e6801aba:녹음_2025-02-27_122332.gif)
+![image](https://github.com/user-attachments/assets/aa989644-9d99-4400-9996-b0ec391acf83)
 
 우측 클릭과 좌측 클릭을 할 때 클릭한 위치로 Player와 End액터들이 이동하게 해줘야 한다. 이렇게 하기 위해서는 또 좌표계산을 해야했다.
 
@@ -433,8 +430,8 @@ if (gameLevel->map->maze[targetWorldPos.x][targetWorldPos.y] == '#')
 ```
 
 ### Astar 경로 생성: Actor생성 및 해제
+![image](https://github.com/user-attachments/assets/ed66b202-d9a1-42ae-a820-44fe15ca4a0d)
 
-![녹음 2025-02-27 122332.gif](attachment:8feac565-6e2a-4bab-b07f-e2f4e6801aba:녹음_2025-02-27_122332.gif)
 
  화면에 물체를 띄우기 위해서는 Actor여야만 해서 Player나 end의 객체의 위치가 변경 될때마다 다음과 같은 흐름으로 코드를 작성하였다.
 
